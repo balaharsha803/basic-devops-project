@@ -1,0 +1,23 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build Stage
+        run: python hello.py
+
+      - name: Test Stage
+        run: python test_app.py
+
+      - name: Deployment Stage
+        run: bash deploy.sh
